@@ -1,0 +1,5 @@
+Registration number, Make, Model, Numberofdoors.
+DJ91100, BMW, 530, 4
+AR22757, Seat, Mii, 5
+AK35879, Kia, Rio, 5
+CH54088, Mazda, 3, 5
