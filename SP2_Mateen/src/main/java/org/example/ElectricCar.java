@@ -23,7 +23,7 @@ public class ElectricCar extends ACar{
     }
 
     public int getKmPrL(){
-        return (int) Math.floor((getWhPrKm()/91.25)/100);
+        return (int) Math.floor(100/(getWhPrKm()/91.25));
     }
 
     public int getRegistrationFee(){
@@ -41,6 +41,6 @@ public class ElectricCar extends ACar{
     }
 
     public String toString(){
-        return super.toString() + "\nRegistrationFee: " + getRegistrationFee();
+        return super.toString() + "\nBattery capacity in KWh: " + getBatteryCapacityKWh() + " | Max range in km: " + getMaxRange() + " | RegistrationFee: " + getRegistrationFee();
     }
 }

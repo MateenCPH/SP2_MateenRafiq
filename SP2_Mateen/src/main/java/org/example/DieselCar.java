@@ -37,11 +37,11 @@ public class DieselCar extends AFuelCar {
     }
 
     public String getFuelType() {
-        return null;
+        return "Diesel";
     }
 
     @Override
     public String toString() {
-        return super.toString() + " Registration fee: " + getRegistrationFee() + " Has particlefilter?: " + hasParticleFilter();
+        return super.toString() + "\nFueltype: " + getFuelType() + " | Registration fee: " + getRegistrationFee() + " | Has particlefilter?: " + hasParticleFilter();
     }
 }

@@ -11,30 +11,20 @@ public class FleetOfCars {
 
 
     public void setup() {
-        //ElectricCar e = new ElectricCar("ABC123", "Tesla", "Model X", 5, 400, 500);
-        //GasolinCar g = new GasolinCar("DJ91100", "BMW", "530i", 4, 17);
-        //DieselCar d = new DieselCar("CA39513","Mercedes","E300",4,16,true);
+        readGasolineCars();
+        readDieselCars();
+        readElectricCars();
 
-        //addCar(e);
-        //addCar(g);
-        //addCar(d);
-
-        ArrayList<String> data = io.readCarData("src/main/java/org/example/fuelcars.csv");
-        for (String s : data){
-            String[] row = s.split(",");
-
+        for (Car car : fleet) {
+            ui.displayMessage(car.toString());
         }
 
-            for (Car car : fleet) {
-                ui.displayMessage(car.toString());
-            }
-
         getTotalRegistrationFeeForFleet();
-        ui.displayMessage("Total fee=" + getTotalRegistrationFeeForFleet());
+        ui.displayMessage("\nTotal fee for all cars: " + getTotalRegistrationFeeForFleet());
     }
 
-    public void addCar(Car car) {
-        fleet.add(car);
+    public void addCar(Car c) {
+        fleet.add(c);
     }
 
     public int getTotalRegistrationFeeForFleet() {
@@ -47,6 +37,54 @@ public class FleetOfCars {
 
     public String toString() {
         return fleet.toString();
+    }
+
+    public void readGasolineCars() {
+        ui.displayMessage("DISPLAYING ALL GASOLINE CARS:");
+        ArrayList<String> data = io.readCarData("src/main/java/org/example/gasolinecars.csv");
+        for (String s : data) {
+            String[] row = s.split(",");
+            String registrationNumber = row[0];
+            String make = row[1];
+            String model = row[2];
+            int numberOfDoors = Integer.parseInt(row[3]);
+            int kmPrLitre = Integer.parseInt(row[4]);
+            GasolinCar g = new GasolinCar(registrationNumber, make, model, numberOfDoors, kmPrLitre);
+            addCar(g);
+        }
+    }
+
+    public void readDieselCars() {
+        ui.displayMessage("DISPLAYING ALL DIESEL CARS:");
+        ArrayList<String> data = io.readCarData("src/main/java/org/example/dieselcars.csv");
+        for (String s : data) {
+            String[] row = s.split(",");
+            String registrationNumber = row[0];
+            String make = row[1];
+            String model = row[2];
+            int numberOfDoors = Integer.parseInt(row[3]);
+            int kmPrLitre = Integer.parseInt(row[4]);
+            boolean particleFilter = Boolean.parseBoolean(row[5]);
+
+            DieselCar d = new DieselCar(registrationNumber, make, model, numberOfDoors, kmPrLitre, particleFilter);
+            addCar(d);
+        }
+    }
+
+    public void readElectricCars() {
+        ui.displayMessage("DISPLAYING ALL ELECTRIC CARS:");
+        ArrayList<String> data = io.readCarData("src/main/java/org/example/electriccars.csv");
+        for (String s : data) {
+            String[] row = s.split(",");
+            String registrationNumber = row[0];
+            String make = row[1];
+            String model = row[2];
+            int numberOfDoors = Integer.parseInt(row[3]);
+            int batteryCapacity = Integer.parseInt(row[4]);
+            int maxRange = Integer.parseInt(row[5]);
+            ElectricCar e = new ElectricCar(registrationNumber, make, model, numberOfDoors, batteryCapacity, maxRange);
+            addCar(e);
+        }
     }
 }
 
